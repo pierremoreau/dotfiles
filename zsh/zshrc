@@ -1,0 +1,200 @@
+# Filename: .zshrc
+
+
+local OS=`uname`
+
+
+local SYMB=''
+if [[ ${EUID} -eq 0 ]]
+then
+  SYMB='#'
+else
+  SYMB='%%'
+fi
+
+
+# Using custom colored output for ls
+case ${OS} in
+  'Darwin')
+    export LSCOLORS='GxFxCxDxBxegedabagaced'
+    ;;
+  'Linux')
+    eval $(dircolors ~/dotfiles/colors/ls.zsh)
+    ;;
+esac
+
+
+# Common aliases
+case ${OS} in
+  'Darwin')
+    alias ls='ls -G'
+    alias mv=" noglob mv -iv"
+    alias rm=" noglob rm -iv"
+    alias du="du -h -x -d 1"
+    ;;
+  'Linux')
+    alias ls="ls --color=auto"
+    alias mv=" noglob timeout 8 mv -iv"
+    alias rm=" noglob timeout 3 rm -Iv --one-file-system"
+    alias du="du --human-readable --total --max-depth=1"
+    ;;
+esac
+alias lsa="ls -lisAh"
+alias grep="grep --color=auto"
+alias grepi="grep -RnI --exclude=tags"
+alias egrepi="grep -RnIE"
+alias less="/usr/share/vim/vim80/macros/less.sh"
+alias lsblk="lsblk -o NAME,FSTYPE,SIZE,LABEL,MOUNTPOINT"
+
+
+# Adding a "command not found" hook
+if [[ ${OS} == 'Linux' ]]
+then
+  source /usr/share/doc/pkgfile/command-not-found.zsh
+fi
+
+
+# Set home page for Lynx
+export WWW_HOME="https://duckduckgo.com"
+
+
+# Set editor
+export EDITOR=vim
+
+
+# Change shortcuts to Emacs
+bindkey -e
+
+
+# Set XDG variables
+export XDG_DATA_HOME="${HOME}/.local"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+
+
+# Trick Vim into following XDG
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+
+
+# Set make flags
+local numcpus=''
+case ${OS} in
+  'Darwin')
+    numcpus=$((`system_profiler SPHardwareDataType 2> /dev/null | grep 'Total Number of Cores' | sed 's/[[:space:]]Total Number of Cores: //'`))
+    ;;
+  'Linux')
+    numcpus=`grep -c '^processor' /proc/cpuinfo`
+    ;;
+esac
+export MAKEFLAGS="--jobs=${numcpus} --load-average=${numcpus}"
+
+
+# Define default compilers
+export CC="/usr/bin/clang"
+export CXX="/usr/bin/clang++"
+
+
+# Starting tmux
+#[[ -z "$TMUX" ]] && exec tmux
+
+
+man() {
+  env LESS_TERMCAP_mb=$'\E[01;31m' \
+  LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+  LESS_TERMCAP_md=$'\E[0m' \
+  LESS_TERMCAP_md=$'\E[0m' \
+  LESS_TERMCAP_md=$'\E[38;5;246m' \
+  LESS_TERMCAP_md=$'\E[0m' \
+  LESS_TERMCAP_md=$'\E[04;38;5;66m' \
+  man "$@"
+}
+
+
+autoload -Uz compinit && compinit
+
+autoload -U colors && colors
+
+setopt promptsubst
+setopt promptpercent
+
+
+function DisplayJobsInformation()
+{
+  if [[ -z `jobs` ]]
+  then
+    jobsNb=0
+    color="green"
+  else
+    jobsNb=`jobs | awk '/\[/{i++}END{print i}'`
+    color="red"
+  fi
+  echo "%{%F{$color}%}$jobsNb jobs"
+}
+
+source ~/dotfiles/colors/zsh
+source ~/dotfiles/battery/display.zsh
+if [[ -z $TMUX && -z $STY && $TERM != 'screen' ]]
+then
+  local dispBattery='$(DisplayBatteryInformation)'
+else
+  local dispBattery=''
+fi
+
+function DisplayBatteryInformation()
+{
+    local battery=$(DisplayBattery)
+    if [[ ${battery} != '' ]]
+    then
+      echo "${battery} "
+    else
+      echo ''
+    fi
+}
+
+# Enable Git repo status display
+case "${OS}" in
+  'Darwin')
+    source '/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh'
+    ;;
+  'Linux')
+    source '/usr/share/git/git-prompt.sh'
+    ;;
+esac
+GIT_PS1_SHOWDIRTYSTATE='true'
+GIT_PS1_SHOWSTASHSTATE='true'
+GIT_PS1_SHOWUNTRACKEDFILES='true'
+GIT_PS1_SHOWUPSTREAM=('verbose' 'name' 'git')
+GIT_PS1_SHOWCOLORHINTS='true'
+precmd()
+{
+  __git_ps1 "
+%{%F{cyan}%}%~%{%f%}" "
+${dispBattery}${SYMB} " " [%s]"
+}
+
+RPROMPT=$'$(DisplayJobsInformation)'
+
+
+# Start the gpg-agent if not already running
+if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+  gpg-connect-agent /bye >/dev/null 2>&1
+fi
+
+# Set SSH to use gpg-agent
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="/run/user/${UID}/gnupg/S.gpg-agent.ssh"
+fi
+
+# Set GPG TTY
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# Refresh gpg-agent tty in case user switches into an X session
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
+
+# Add arcanist to PATH
+PATH="${PATH}:${HOME}/privat/softwares/arcanist/bin"
+export PATH
+source "${HOME}/privat/softwares/arcanist/resources/shell/bash-completion"

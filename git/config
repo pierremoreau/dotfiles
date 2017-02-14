@@ -1,0 +1,25 @@
+[alias]
+	loggod = log --graph --oneline --decorate
+	branchv = branch --list -vv --all
+	branchlv = branch --list -vv
+	ctags = !.git/hooks/ctags
+[core]
+	editor = vim
+	excludesfile = ~/.config/git/ignore
+[user]
+	useconfigonly = true
+[format]
+	signoff = true
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[push]
+	default = simple
+[status]
+	submodulesummary = 1
+[init]
+	templatedir = ~/.config/git/template

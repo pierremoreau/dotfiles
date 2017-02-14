@@ -1,0 +1,34 @@
+# Editors backup files
+*.swp
+*~
+
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.loa
+*.lof
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.pdf
+
+# Python build files
+*.pyc
+
+tags
+.vimproject
+.syntastic*
+.color_coded*
+.ycm_extra_conf.py
+
+build/
+
+# Eclipse project files
+.project
+.cproject
+
+# macOS files
+*.DS_Store

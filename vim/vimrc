@@ -1,0 +1,243 @@
+" Vim Configuration File
+" Author:       Pierre Moreau <pierre.morrow@free.fr>
+
+
+" Disable Vi compatibility
+set nocompatible
+
+
+" Change runtime directory to follow XDG directory specification
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_DATA_HOME/vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$XDG_CONFIG_HOME/vim/after
+
+
+" Set beginning of statusline
+set statusline=%<%f\ %h%m%r\ \ 
+
+
+" Encoding settings
+set fileencoding=utf-8
+set encoding=utf-8
+
+
+" Indentation settings
+filetype plugin indent on
+set expandtab
+set shiftwidth=2
+set shiftround
+set softtabstop=2
+
+
+" Viewing settings
+syntax on
+set hidden " Hide buffers when opening a new one, rather than closing them
+set laststatus=2
+set modeline
+set modelines=2
+set showcmd
+set number
+set showmatch
+set splitright
+set splitbelow
+set list
+set listchars=tab:>-,trail:¬,nbsp:Ŧ
+set textwidth=79
+set pastetoggle=<F2>
+autocmd VimResized * wincmd =
+highlight ColorColumn ctermfg=DarkBlue ctermbg=LightGrey
+highlight Delimiter ctermfg=Black ctermbg=DarkGreen
+highlight Comment ctermfg=DarkGreen ctermbg=Black
+autocmd FileType help wincmd L
+
+" Search settings
+set smartcase
+set incsearch
+set hlsearch
+noremap <CR> :nohlsearch<CR><CR>
+
+
+" Completion settings
+set wildmode=longest,full
+set wildmenu
+set wildignore=*.swp,*.bak,*.pyc,*.class
+
+
+" Enable spell-checking
+set spell
+set spelllang=en_gb
+highlight SpellBad ctermfg=Black ctermbg=9
+highlight SpellCap ctermbg=12
+highlight SpellLocal ctermfg=Black ctermbg=14
+highlight SpellRare ctermfg=Black ctermbg=13
+
+
+" CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+
+" Tags settings
+map <A-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+" Compilation settings
+nmap <F4> :make<CR>
+
+
+" YouCompleteMe plugin
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_filepath_completion_use_working_dir = 1
+
+highlight Pmenu ctermfg=DarkCyan ctermbg=Black guifg=#008ab8 guibg=#000000
+
+
+" Color-Coded plugin
+let g:color_coded_enabled = 1
+if &diff
+	let g:color_coded_enabled = 0
+endif
+let g:color_coded_filetypes = [ 'c', 'cpp', 'objc', 'cuda', 'opencl' ]
+
+
+" editorconfig-vim settings
+let g:EditorConfig_exclude_patterns = [ 'fugitive://.*' ]
+let g:EditorConfig_preserve_format_options = 1
+let g:EditorConfig_verbose = 1
+
+
+autocmd BufNewFile,BufRead *.gltf set filetype=json
+autocmd BufNewFile,BufRead *.cudah set filetype=cuda
+autocmd BufNewFile,BufRead *.remarkup set filetype=markdown
+autocmd BufNewFile,BufRead *.tex set makeprg=rubber\ --pdf\ --warn\ all\ %
+autocmd BufNewFile,BufRead *.ptx set nospell
+autocmd BufNewFile,BufRead *.ptx set filetype=asm
+autocmd BufNewFile,BufRead *.cl set filetype=opencl.c
+
+
+" clang-format settings
+map <C-I> :pyf /usr/share/clang/clang-format.py<cr>
+imap <C-I> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
+
+
+" Vim-Fugitive settings
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+
+" Vim-fswitch settings
+augroup cudafiles
+	au!
+	au BufEnter *.cu let b:fswitchdst = 'cuh,hpp,h'
+	au BufEnter *.cu let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|'
+augroup END
+augroup cudaheaders
+	au!
+	au BufEnter *.cuh let b:fswitchdst = 'cu,cpp,c'
+	au BufEnter *.cuh let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,ifrel:|/include/|../src|'
+augroup END
+augroup cppfiles
+	au!
+	au BufEnter *.cpp let b:fswitchdst = 'hpp,h,cuh'
+	au BufEnter *.cpp let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|'
+augroup END
+augroup cppheaders
+	au!
+	au BufEnter *.hpp let b:fswitchdst = 'cpp,c,cu'
+	au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,ifrel:|/include/|../src|'
+	au BufEnter *.h let b:fswitchdst = 'c,cpp,cu'
+	au BufEnter *.h let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,ifrel:|/include/|../src|'
+augroup END
+augroup vertshader
+	au!
+	au BufEnter *.vert let b:fswitchdst = 'frag'
+	au BufEnter *.vert let b:fswitchlocs = 'ifrel:|/shaders/|../src|'
+augroup END
+augroup fragshader
+	au!
+	au BufEnter *.frag let b:fswitchdst = 'vert'
+	au BufEnter *.frag let b:fswitchlocs = 'ifrel:|/shaders/|../src|'
+augroup END
+nmap <silent> <Leader>of :FSHere<cr>
+nmap <silent> <Leader>ol :FSRight<cr>
+nmap <silent> <Leader>oL :FSSplitRight<cr>
+nmap <silent> <Leader>oh :FSLeft<cr>
+nmap <silent> <Leader>oH :FSSplitLeft<cr>
+nmap <silent> <Leader>ok :FSAbove<cr>
+nmap <silent> <Leader>oK :FSSplitAbove<cr>
+nmap <silent> <Leader>oj :FSBelow<cr>
+nmap <silent> <Leader>oJ :FSSplitBelow<cr>
+
+
+let s:plug_dir = '$XDG_DATA_HOME/vim/plugged'
+
+
+function! BuildColorCoded(info)
+	if a:info.status == 'installed'
+		execute '!mkdir build'
+		execute '!cd build && cmake -GNinja -DDOWNLOAD_CLANG=0 ..'
+	else
+		if a:info.force
+			execute '!cd build && ninja clean'
+		else
+			execute '!cd build && cmake ..'
+		endif
+	endif
+	execute '!cd build && ninja install'
+endfunction
+
+function! BuildYouCompleteMe(info)
+	if a:info.status == 'installed'
+		execute '!mkdir build'
+		execute '!cd build && cmake -GNinja -DUSE_SYSTEM_LIBCLANG=ON . ../third_party/ycmd/cpp'
+	else
+		if a:info.force
+			execute '!cd build && ninja clean'
+		else
+			execute '!cd build && cmake ../third_party/ycmd/cpp'
+		endif
+	endif
+	execute '!cd build && ninja ycm_core'
+endfunction
+
+call plug#begin(s:plug_dir)
+
+Plug 'beyondmarc/glsl.vim'
+Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
+Plug 'jeaye/color_coded', { 'do' : function('BuildColorCoded') }
+Plug 'Valloric/YouCompleteMe', { 'do' : function('BuildYouCompleteMe') }
+Plug 'tpope/vim-fugitive'
+Plug 'tbknl/vimproject'
+Plug 'fidian/hexmode'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'lervag/vimtex'
+Plug 'richq/vim-cmake-completion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
+
+call plug#end()
+
+
+" Status line settings, taken from
+" https://github.com/sk1418/myConf/blob/master/common/.vimrc
+set statusline =[%n] " buffer number
+set statusline+=\ %{fugitive#head(8)}:
+set statusline+=%f\ %m%r%h%w " filename and modifier flags
+set statusline+=\|
+set statusline+=\ %Y: " filetype
+set statusline+=%{&ff}:  " dos/unix
+set statusline+=%{&fenc!=''?&fenc:&enc}\  " encoding
+set statusline+=%=%14.(%l,%c%V%)\ %P

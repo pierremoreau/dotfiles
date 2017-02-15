@@ -35,7 +35,7 @@ set showmatch
 set splitright
 set splitbelow
 set list
-set listchars=tab:>-,trail:¬,nbsp:Ŧ
+set listchars=tab:>-,trail:¬
 set textwidth=79
 set pastetoggle=<F2>
 autocmd VimResized * wincmd =
@@ -43,6 +43,10 @@ highlight ColorColumn ctermfg=DarkBlue ctermbg=LightGrey
 highlight Delimiter ctermfg=Black ctermbg=DarkGreen
 highlight Comment ctermfg=DarkGreen ctermbg=Black
 autocmd FileType help wincmd L
+syntax match nbsp ' '
+highlight nbsp ctermbg=DarkGreen
+syntax match nnbsp ' '
+highlight nnbsp ctermbg=LightGreen
 
 " Search settings
 set smartcase

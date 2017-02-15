@@ -219,6 +219,7 @@ Plug 'beyondmarc/glsl.vim'
 Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
 Plug 'jeaye/color_coded', { 'do' : function('BuildColorCoded') }
 Plug 'Valloric/YouCompleteMe', { 'do' : function('BuildYouCompleteMe') }
+Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-fugitive'
 Plug 'tbknl/vimproject'
 Plug 'fidian/hexmode'

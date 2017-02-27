@@ -7,6 +7,7 @@
 	editor = vim
 [user]
 	useconfigonly = true
+	name = Pierre Moreau
 [format]
 	signoff = true
 [diff]

@@ -237,7 +237,7 @@ call plug#end()
 " https://github.com/sk1418/myConf/blob/master/common/.vimrc
 set statusline =[%n] " buffer number
 set statusline+=\ %{fugitive#head(8)}:
-set statusline+=%f\ %m%r%h%w " filename and modifier flags
+set statusline+=%f%m%r%h%w\  " filename and modifier flags
 set statusline+=\|
 set statusline+=\ %Y: " filetype
 set statusline+=%{&ff}:  " dos/unix

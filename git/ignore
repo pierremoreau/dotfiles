@@ -23,12 +23,17 @@ tags
 .syntastic*
 .color_coded*
 .ycm_extra_conf.py
+compile_commands.json
+lldb-nvim.json
 
 build/
 
 # Eclipse project files
 .project
 .cproject
+
+# NVIDIA Visual Profiler files
+*.nvvp
 
 # macOS files
 *.DS_Store

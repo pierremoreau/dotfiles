@@ -127,6 +127,7 @@ autocmd BufNewFile,BufRead *.tex set makeprg=rubber\ --pdf\ --warn\ all\ %
 autocmd BufNewFile,BufRead *.ptx set nospell
 autocmd BufNewFile,BufRead *.ptx set filetype=asm
 autocmd BufNewFile,BufRead *.cl set filetype=opencl.c
+autocmd BufNewFile,BufRead *.md.html set filetype=markdown
 
 
 " clang-format settings

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+__MYCOLOR_RESET="%{%f%}%{%k%}"
+__MYCOLOR_FGGREEN="%{%F{green}%}"
+__MYCOLOR_FGYELLOW="%{%F{yellow}%}"
+__MYCOLOR_FGRED="%{%F{red}%}"
+__MYCOLOR_BGRED="%{%K{red}%}"
+
+__MYCHAR_ESC="%"

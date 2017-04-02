@@ -1,0 +1,9 @@
+#!/bin/sh
+
+__MYCOLOR_RESET="#[fg=default]#[bg=default]"
+__MYCOLOR_FGGREEN="#[fg=colour118]"
+__MYCOLOR_FGYELLOW="#[fg=colour226]"
+__MYCOLOR_FGRED="#[fg=colour160]"
+__MYCOLOR_BGRED="#[bg=colour160]"
+
+__MYCHAR_ESC=""

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+__MYCOLOR_RESET="\[\e[0m\]"
+__MYCOLOR_FGGREEN="\[\e[38;5;118m\]"
+__MYCOLOR_FGYELLOW="\[\e[38;5;226m\]"
+__MYCOLOR_FGRED="\[\e[38;5;160m\]"
+__MYCOLOR_BGRED="\[\e[48;5;160m\]"
+
+__MYCHAR_ESC=""

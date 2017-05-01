@@ -125,6 +125,7 @@ autocmd BufNewFile,BufRead *.remarkup set filetype=markdown
 autocmd BufNewFile,BufRead *.tex set makeprg=rubber\ --pdf\ --warn\ all\ %
 autocmd BufNewFile,BufRead *.ptx set nospell
 autocmd BufNewFile,BufRead *.ptx set filetype=asm
+autocmd BufNewFile,BufRead *.spv set nospell
 autocmd BufNewFile,BufRead *.cl set filetype=opencl.c
 autocmd BufNewFile,BufRead *.md.html set filetype=markdown
 
@@ -225,6 +226,7 @@ Plug 'lervag/vimtex'
 Plug 'richq/vim-cmake-completion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'kbenzie/vim-spirv'
 
 call plug#end()
 

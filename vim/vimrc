@@ -115,9 +115,8 @@ let g:color_coded_filetypes = [ 'c', 'cpp', 'objc', 'cuda', 'opencl' ]
 
 
 " editorconfig-vim settings
-let g:EditorConfig_exclude_patterns = [ 'fugitive://.*' ]
+let g:EditorConfig_exclude_patterns = [ 'fugitive://.*', '*.spv' ]
 let g:EditorConfig_preserve_format_options = 1
-let g:EditorConfig_verbose = 1
 
 
 autocmd BufNewFile,BufRead *.gltf set filetype=json

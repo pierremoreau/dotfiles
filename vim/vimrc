@@ -115,9 +115,8 @@ let g:color_coded_filetypes = [ 'c', 'cpp', 'objc', 'cuda', 'opencl' ]
 
 
 " editorconfig-vim settings
-let g:EditorConfig_exclude_patterns = [ 'fugitive://.*' ]
+let g:EditorConfig_exclude_patterns = [ 'fugitive://.*', '*.spv' ]
 let g:EditorConfig_preserve_format_options = 1
-let g:EditorConfig_verbose = 1
 
 
 autocmd BufNewFile,BufRead *.gltf set filetype=json
@@ -126,6 +125,7 @@ autocmd BufNewFile,BufRead *.remarkup set filetype=markdown
 autocmd BufNewFile,BufRead *.tex set makeprg=rubber\ --pdf\ --warn\ all\ %
 autocmd BufNewFile,BufRead *.ptx set nospell
 autocmd BufNewFile,BufRead *.ptx set filetype=asm
+autocmd BufNewFile,BufRead *.spv set nospell
 autocmd BufNewFile,BufRead *.cl set filetype=opencl.c
 autocmd BufNewFile,BufRead *.md.html set filetype=markdown
 
@@ -217,18 +217,16 @@ endfunction
 call plug#begin(s:plug_dir)
 
 Plug 'beyondmarc/glsl.vim'
-Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
 Plug 'jeaye/color_coded', { 'do' : function('BuildColorCoded') }
 Plug 'Valloric/YouCompleteMe', { 'do' : function('BuildYouCompleteMe') }
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-fugitive'
-Plug 'tbknl/vimproject'
-Plug 'fidian/hexmode'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'lervag/vimtex'
 Plug 'richq/vim-cmake-completion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'kbenzie/vim-spirv'
 
 call plug#end()
 

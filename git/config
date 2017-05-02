@@ -23,3 +23,5 @@
 	submodulesummary = 1
 [init]
 	templatedir = ~/.config/git/template
+[rebase]
+	autoSquash = true

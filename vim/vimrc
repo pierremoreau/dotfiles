@@ -203,7 +203,7 @@ endfunction
 function! BuildYouCompleteMe(info)
 	if a:info.status == 'installed'
 		execute '!mkdir build'
-		execute '!cd build && cmake -GNinja -DUSE_SYSTEM_LIBCLANG=ON . ../third_party/ycmd/cpp'
+		execute '!cd build && cmake -GNinja -DUSE_SYSTEM_LIBCLANG=ON -DUSE_CLANG_COMPLETER=ON -DUSE_PYTHON2=OFF . ../third_party/ycmd/cpp'
 	else
 		if a:info.force
 			execute '!cd build && ninja clean'

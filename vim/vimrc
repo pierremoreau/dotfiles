@@ -103,6 +103,10 @@ if !exists(":DiffOrig")
 endif
 
 
+" Keymaps
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+
 " Tags settings
 map <A-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>

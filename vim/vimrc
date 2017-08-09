@@ -47,6 +47,21 @@ syntax match nbsp ' '
 highlight nbsp ctermbg=DarkGreen
 syntax match nnbsp ' '
 highlight nnbsp ctermbg=LightGreen
+highlight clear StatusLine
+highlight StatusLine ctermfg=Black ctermbg=LightGrey
+highlight clear StatusLineNC
+highlight StatusLineNC ctermfg=White ctermbg=DarkGrey
+highlight clear TabLine
+highlight TabLine ctermfg=White ctermbg=DarkGrey
+highlight clear TabLineFill
+highlight TabLineFill ctermbg=DarkGrey
+highlight clear TabLineSel
+highlight TabLineSel ctermfg=White ctermbg=Black
+highlight clear VertSplit
+highlight VertSplit cterm=bold ctermfg=White
+set fillchars=vert:\│
+highlight clear LineNr
+highlight LineNr cterm=italic ctermfg=Brown
 
 " Search settings
 set smartcase
@@ -64,10 +79,14 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 " Enable spell-checking
 set spell
 set spelllang=en_gb
-highlight SpellBad ctermfg=Black ctermbg=9
-highlight SpellCap ctermbg=12
-highlight SpellLocal ctermfg=Black ctermbg=14
-highlight SpellRare ctermfg=Black ctermbg=13
+highlight clear SpellBad
+highlight SpellBad cterm=underline,italic ctermfg=Red
+highlight clear SpellCap
+highlight SpellCap cterm=underline,italic ctermfg=Blue
+highlight clear SpellLocal
+highlight SpellLocal cterm=underline,italic ctermfg=Cyan
+highlight clear SpellRare
+highlight SpellRare cterm=underline,italic ctermfg=Brown
 
 
 " CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo,

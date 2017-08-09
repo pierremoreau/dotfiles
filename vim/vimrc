@@ -205,6 +205,17 @@ nmap <silent> <Leader>oj :FSBelow<cr>
 nmap <silent> <Leader>oJ :FSSplitBelow<cr>
 
 
+" YouCompleteMe settings
+nnoremap <Leader>jD :YcmCompleter GoToDeclaration<cr>
+nnoremap <Leader>jd :YcmCompleter GoToDefinition<cr>
+nnoremap <Leader>ji :YcmCompleter GoToInclude<cr>
+nnoremap <Leader>gt :YcmCompleter GetType<cr>
+nnoremap <Leader>gp :YcmCompleter GetParent<cr>
+nnoremap <Leader>gd :YcmCompleter GetDoc<cr>
+nnoremap <Leader>fx :YcmCompleter FixIt<cr>
+nnoremap <Leader>rf :YcmCompleter RefactorRename
+
+
 let s:plug_dir = '$XDG_DATA_HOME/vim/plugged'
 
 

@@ -252,6 +252,7 @@ call plug#begin(s:plug_dir)
 Plug 'beyondmarc/glsl.vim'
 Plug 'jeaye/color_coded', { 'do' : function('BuildColorCoded') }
 Plug 'Valloric/YouCompleteMe', { 'do' : function('BuildYouCompleteMe') }
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-fugitive'
 Plug 'derekwyatt/vim-fswitch'
@@ -260,6 +261,7 @@ Plug 'richq/vim-cmake-completion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'kbenzie/vim-spirv'
+Plug 'sjl/gundo.vim'
 
 call plug#end()
 

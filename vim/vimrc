@@ -268,11 +268,13 @@ call plug#end()
 
 " Status line settings, taken from
 " https://github.com/sk1418/myConf/blob/master/common/.vimrc
-set statusline =[%n] " buffer number
-set statusline+=\ %{fugitive#head(8)}:
-set statusline+=%f%m%r%h%w\  " filename and modifier flags
+set statusline =\ %n: " buffer number
+set statusline+=\ {☢:\ %{youcompleteme#GetErrorCount()}
+set statusline+=\ \|\ ⚠:\ %{youcompleteme#GetWarningCount()}}
+set statusline+=\ [%{fugitive#head(8)}]
+set statusline+=\ %f%m%r%h%w\  " filename and modifier flags
 set statusline+=\|
 set statusline+=\ %Y: " filetype
 set statusline+=%{&ff}:  " dos/unix
 set statusline+=%{&fenc!=''?&fenc:&enc}\  " encoding
-set statusline+=%=%14.(%l,%c%V%)\ %P
+set statusline+=%=%14.(\(%l,%c\)%V%)\ %P

@@ -154,8 +154,7 @@ autocmd BufNewFile,BufRead *.md.html  set filetype=markdown
 
 
 " clang-format settings
-map <C-I> :pyf /usr/share/clang/clang-format.py<cr>
-imap <C-I> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
+autocmd FileType c,cpp,cuda,opencl setlocal equalprg=clang-format
 
 
 " Vim-Fugitive settings

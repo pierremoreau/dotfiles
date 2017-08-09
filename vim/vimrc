@@ -142,15 +142,15 @@ let g:EditorConfig_exclude_patterns = [ 'fugitive://.*', '*.spv' ]
 let g:EditorConfig_preserve_format_options = 1
 
 
-autocmd BufNewFile,BufRead *.gltf set filetype=json
-autocmd BufNewFile,BufRead *.cudah set filetype=cuda
+autocmd BufNewFile,BufRead *.gltf     set filetype=json
+autocmd BufNewFile,BufRead *.cudah    set filetype=cuda
 autocmd BufNewFile,BufRead *.remarkup set filetype=markdown
-autocmd BufNewFile,BufRead *.tex set makeprg=rubber\ --pdf\ --warn\ all\ %
-autocmd BufNewFile,BufRead *.ptx set nospell
-autocmd BufNewFile,BufRead *.ptx set filetype=asm
-autocmd BufNewFile,BufRead *.spv set nospell
-autocmd BufNewFile,BufRead *.cl set filetype=opencl.c
-autocmd BufNewFile,BufRead *.md.html set filetype=markdown
+autocmd BufNewFile,BufRead *.tex      set makeprg=rubber\ --pdf\ --warn\ all\ %
+autocmd BufNewFile,BufRead *.ptx      set nospell
+autocmd BufNewFile,BufRead *.ptx      set filetype=asm
+autocmd BufNewFile,BufRead *.spv      set nospell
+autocmd BufNewFile,BufRead *.cl       set filetype=opencl.c
+autocmd BufNewFile,BufRead *.md.html  set filetype=markdown
 
 
 " clang-format settings

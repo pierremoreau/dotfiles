@@ -262,6 +262,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'kbenzie/vim-spirv'
 Plug 'sjl/gundo.vim'
+Plug 'chrisbra/unicode.vim'
 
 call plug#end()
 

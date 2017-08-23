@@ -119,7 +119,7 @@ nmap <F4> :make<CR>
 " YouCompleteMe plugin
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -216,6 +216,10 @@ nnoremap <Leader>fx :YcmCompleter FixIt<cr>
 nnoremap <Leader>rf :YcmCompleter RefactorRename
 
 
+" Gundo settings
+nnoremap <Leader>gu :GundoToggle<cr>
+
+
 let s:plug_dir = '$XDG_DATA_HOME/vim/plugged'
 
 
@@ -262,6 +266,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'kbenzie/vim-spirv'
 Plug 'sjl/gundo.vim'
+Plug 'chrisbra/unicode.vim'
 
 call plug#end()
 

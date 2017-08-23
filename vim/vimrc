@@ -216,6 +216,10 @@ nnoremap <Leader>fx :YcmCompleter FixIt<cr>
 nnoremap <Leader>rf :YcmCompleter RefactorRename
 
 
+" Gundo settings
+nnoremap <Leader>gu :GundoToggle<cr>
+
+
 let s:plug_dir = '$XDG_DATA_HOME/vim/plugged'
 
 

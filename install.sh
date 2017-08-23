@@ -65,3 +65,6 @@ link_xdg "user-dirs.dirs"
 
 # Setup Zsh
 link_dot "zshrc" "zsh"
+
+# For WeeChat
+# cd ~/.weechat/python/autoload; wget https://raw.githubusercontent.com/kattrali/weemoji/master/weemoji.py

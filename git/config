@@ -25,3 +25,7 @@
 	templatedir = ~/.config/git/template
 [rebase]
 	autoSquash = true
+[sendemail]
+	smtpencryption = ssl
+	suppresscc = self
+	signedoffbycc = true

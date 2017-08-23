@@ -154,7 +154,7 @@ autocmd BufNewFile,BufRead *.md.html  set filetype=markdown
 
 
 " clang-format settings
-autocmd FileType c,cpp,cuda,opencl setlocal equalprg=clang-format
+autocmd FileType c,cpp,cuda,opencl setlocal equalprg=clang-format\ -style='file'
 
 
 " Vim-Fugitive settings

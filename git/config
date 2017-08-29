@@ -12,6 +12,7 @@
 	signoff = true
 [diff]
 	tool = vimdiff
+	submodule = log
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3

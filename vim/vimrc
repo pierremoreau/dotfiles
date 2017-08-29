@@ -220,6 +220,23 @@ nnoremap <Leader>rf :YcmCompleter RefactorRename
 nnoremap <Leader>gu :GundoToggle<cr>
 
 
+" vimtex settings
+let g:vimtex_compiler_latexmk = {
+\  'backend': 'jobs',
+\  'background': 1,
+\  'build_dir': './build',
+\  'callback': 1,
+\  'continuous': 1,
+\  'options': [
+\    '-pdf',
+\    '-verbose',
+\    '-file-line-error',
+\    '-synctex=1',
+\    '-interaction=nonstopmode'
+\  ]
+\}
+
+
 let s:plug_dir = '$XDG_DATA_HOME/vim/plugged'
 
 

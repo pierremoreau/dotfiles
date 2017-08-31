@@ -73,6 +73,7 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 
 
 # Trick Vim into following XDG
+# tricks Neovim as well…
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 

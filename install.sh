@@ -47,7 +47,7 @@ function link_dot()
 link_xdg "git"
 
 # Setup Neovim
-link_xdg "neovim"
+link_xdg "nvim"
 curl -sS -fLo ${DATA_HOME}/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "Neovim has been set up, but you will need to manually call" \

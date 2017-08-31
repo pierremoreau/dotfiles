@@ -1,5 +1,5 @@
 [alias]
-	loggod = log --graph --oneline --decorate
+	loggod = log --graph --no-show-signature --pretty=format:\"%C(auto)%h %G? %d %s%Creset\"
 	branchv = branch --list -vv --all
 	branchlv = branch --list -vv
 	ctags = !.git/hooks/ctags
@@ -30,3 +30,5 @@
 	smtpencryption = ssl
 	suppresscc = self
 	signedoffbycc = true
+[log]
+	showSignature = true

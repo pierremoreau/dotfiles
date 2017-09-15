@@ -31,6 +31,18 @@ function link_xdg()
   fi
 }
 
+function link_xdg_data()
+{
+  [[ "${verbose}" = true ]] && verbose_ln='-v' || verbose_ln=''
+  if [[ -d "${CONFIG_HOME}/${1}" && "${override}" = false ]]
+  then
+    echo "Failed to link '${1}': already existing ('-f' for overwrite)"
+  else
+    [[ "${verbose}" = true ]] && echo "Linking '${1}'"
+    ln -s -f ${verbose_ln} -t "${CONFIG_DATA}" "${PWD}/${1}"
+  fi
+}
+
 function link_dot()
 {
   [[ "${verbose}" = true ]] && verbose_ln='-v' || verbose_ln=''
@@ -65,6 +77,9 @@ link_xdg "user-dirs.dirs"
 
 # Setup Zsh
 link_dot "zshrc" "zsh"
+
+# Add scripts for emails
+link_xdg_data "mailpop.py"
 
 # For WeeChat
 # cd ~/.weechat/python/autoload; wget https://raw.githubusercontent.com/kattrali/weemoji/master/weemoji.py

@@ -16,7 +16,7 @@ fi
   CONFIG_HOME="${HOME}/.config" ||
   CONFIG_HOME="${XDG_CONFIG_HOME}"
 [[ -z "${XDG_DATA_HOME}" ]] &&
-  DATA_HOME="${HOME}/.local/share" ||
+  DATA_HOME="${HOME}/.local" ||
   DATA_HOME="${XDG_DATA_HOME}"
 
 function link_xdg()

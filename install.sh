@@ -34,12 +34,12 @@ function link_xdg()
 function link_xdg_data()
 {
   [[ "${verbose}" = true ]] && verbose_ln='-v' || verbose_ln=''
-  if [[ -d "${CONFIG_HOME}/${1}" && "${override}" = false ]]
+  if [[ -d "${DATA_HOME}/${1}" && "${override}" = false ]]
   then
     echo "Failed to link '${1}': already existing ('-f' for overwrite)"
   else
     [[ "${verbose}" = true ]] && echo "Linking '${1}'"
-    ln -s -f ${verbose_ln} -t "${CONFIG_DATA}" "${PWD}/${1}"
+    ln -s -f ${verbose_ln} -t "${DATA_HOME}" "${PWD}/${1}"
   fi
 }
 

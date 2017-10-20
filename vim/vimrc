@@ -297,6 +297,12 @@ Plug 'chrisbra/unicode.vim'
 call plug#end()
 
 
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+
+
 " Status line settings, taken from
 " https://github.com/sk1418/myConf/blob/master/common/.vimrc
 set statusline =\ %n: " buffer number

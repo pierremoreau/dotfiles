@@ -157,6 +157,10 @@ autocmd BufNewFile,BufRead *.md.html  set filetype=markdown
 autocmd FileType c,cpp,cuda,opencl setlocal equalprg=clang-format\ -style='file'
 
 
+" clang-rename settings
+noremap <leader>cr :pyf /usr/share/clang/clang-rename.py<cr>
+
+
 " Vim-Fugitive settings
 autocmd BufReadPost fugitive://* set bufhidden=delete
 

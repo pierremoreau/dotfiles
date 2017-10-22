@@ -1,6 +1,10 @@
 # Filename: .zshrc
 
 
+current_path=$(readlink -f "$(print -P %N)")
+root_dir=$(dirname "$(dirname "${current_path}")")
+
+
 local OS=`uname`
 
 
@@ -19,7 +23,7 @@ case ${OS} in
     export LSCOLORS='GxFxCxDxBxegedabagaced'
     ;;
   'Linux')
-    eval $(dircolors ~/dotfiles/colors/ls.zsh)
+    eval $(dircolors ${root_dir}/colors/ls.zsh)
     ;;
 esac
 
@@ -132,8 +136,8 @@ function DisplayJobsInformation()
   echo "%{%F{$color}%}$jobsNb jobs"
 }
 
-source ~/dotfiles/colors/zsh
-source ~/dotfiles/battery/display.zsh
+source ${root_dir}/colors/zsh
+source ${root_dir}/battery/display.zsh
 if [[ -z $TMUX && -z $STY && $TERM != 'screen' ]]
 then
   local dispBattery='$(DisplayBatteryInformation)'

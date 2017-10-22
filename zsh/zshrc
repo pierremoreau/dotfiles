@@ -81,6 +81,10 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 
+# Set Weechat home directory
+export WEECHAT_HOME="${XDG_CONFIG_HOME}/weechat"
+
+
 # Set make flags
 local numcpus=''
 case ${OS} in

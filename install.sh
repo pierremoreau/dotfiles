@@ -72,6 +72,10 @@ curl -sS -fLo ${DATA_HOME}/vim/autoload/plug.vim --create-dirs \
 echo "Vim has been set up, but you will need to manually call" \
   "\`:PlugInstall()\` to install the plug-ins"
 
+# Setup Weechat
+link_xdg "weechat"
+# cd ~/.weechat/python/autoload; wget https://raw.githubusercontent.com/kattrali/weemoji/master/weemoji.py
+
 # Setup XDG
 link_xdg "user-dirs.dirs"
 
@@ -80,6 +84,3 @@ link_dot "zshrc" "zsh"
 
 # Add scripts for emails
 link_xdg_data "mailpop.py"
-
-# For WeeChat
-# cd ~/.weechat/python/autoload; wget https://raw.githubusercontent.com/kattrali/weemoji/master/weemoji.py

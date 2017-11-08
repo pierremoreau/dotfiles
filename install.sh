@@ -69,6 +69,9 @@ echo "Neovim has been set up, but you will need to manually call" \
 link_xdg "vim"
 curl -sS -fLo ${DATA_HOME}/vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+echo ":set runtimepath+=${XDG_CONFIG_HOME}/vim,${XDG_CONFIG_HOME}/vim/after
+:set packpath+=${XDG_DATA_HOME}/vim/pack
+source ${XDG_CONFIG_HOME}/vim/vimrc" > ${HOME}/.vimrc
 echo "Vim has been set up, but you will need to manually call" \
   "\`:PlugInstall()\` to install the plug-ins"
 
